@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'AirbnbCerealBlack';
+  src: url('../assets/fonts/AirbnbCerealBlack.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AirbnbCerealBold';
+  src: url('../assets/fonts/AirbnbCerealBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AirbnbCerealBook';
+  src: url('../assets/fonts/AirbnbCerealBook.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AirbnbCerealBlack';
+  src: url('../assets/fonts/AirbnbCerealBlack.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AirbnbCerealExtraBold';
+  src: url('../assets/fonts/AirbnbCerealExtraBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AirbnbCerealBlack';
+  src: url('../assets/fonts/AirbnbCerealBlack.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AirbnbCerealLight';
+  src: url('../assets/fonts/AirbnbCerealLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AirbnbCerealMedium';
+  src: url('../assets/fonts/AirbnbCerealMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
