@@ -23,14 +23,14 @@ export const ProfileImage = styled.img`
   border: 3px solid;
   ${media.Tablet`
   
-  height: 100px;
-    width: 100px;
-    top: -50px;
+  height: 80px;
+    width: 80px;
+    top: -40px;
   `};
   ${media.Phablet`
-  height: 90px;
-  width: 90px;
-  top: -45px;
+  height: 60px;
+  width: 60px;
+  top: -30px;
   `};
 `
 
@@ -38,11 +38,11 @@ export const UserDetail = styled.div`
   position: relative;
   padding: 15px;
   padding-top: 70px;
-  ${media.Phablet`
-    padding-top: 55px;
-  `};
   ${media.Tablet`
-    padding-top: 60px;
+    padding-top: 50px;
+  `};
+  ${media.Phablet`
+    padding-top: 40px;
   `};
 `
 

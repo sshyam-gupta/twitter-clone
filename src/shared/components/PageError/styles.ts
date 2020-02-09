@@ -22,8 +22,8 @@ export const ErrorBox = styled.div`
   padding: 32px;
   border-radius: 3px;
   border: 1px solid ${color.borderLight};
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 0 ${color.backgroundDarkPrimary};
+  background: ${color.backgroundDarkPrimary};
   text-align: center;
 `;
 

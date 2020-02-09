@@ -1,23 +1,41 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import DATA from './data';
 import UserData from './UserData';
 import Tweet from './Tweet';
+import ApiService from '../../shared/utils/services/ApiService';
+import { wrapException } from '../../shared/utils/hooks/useApi';
 
-const UserPage = (props: any) => {
+const UserPage = () => {
   const { userId } = useParams();
-  const [data, setData] = React.useState(DATA);
+  const [data, setData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  React.useEffect(() => {
+      setIsLoading(true);
+      ApiService.getUserTimeline()
+      .then((response) => {
+        setData(response)
+        setIsLoading(false);
+      })
+      .catch((err: any) => {
+        console.error(wrapException(err))
+        setIsLoading(false);
+      })
+
+  }, [userId]);
+
+  if(isLoading) {
+    return <div>Loading</div>
+  }
 
   return (
     <section>
-      {data && (
+      {data && data?.[0] && (
         <>
-          {/*
-          // @ts-ignore */}
-          <UserData user={data[0].user} />
-          {/*
-          // @ts-ignore */}
-          {data.map((tweet, index) => <Tweet key={tweet.id} tweet={tweet} index={index} />)}
+        {/*
+        // @ts-ignore */}
+          <UserData user={data?.[0]?.user} />
+          {data.map((tweet: any, index: number) => <Tweet key={tweet.id || index} tweet={tweet} />)}
         </>
       )}
     </section>

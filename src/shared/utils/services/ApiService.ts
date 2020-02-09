@@ -24,6 +24,10 @@ class ApiService extends CachedService {
     });
   }
 
+  getTweet(tweetId = "1226557433926963200") {
+    return this.GET(`/statuses/retweets/${tweetId}`);
+  }
+
   searchTweets(value = "#DelhiExitPolls") {
     return this.GET(`/search/tweets.json`, {
       q: `from:${value}`,

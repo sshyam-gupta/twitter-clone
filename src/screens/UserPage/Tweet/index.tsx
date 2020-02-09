@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 import { IUser } from '../UserData';
 import {
@@ -12,11 +11,14 @@ import {
   TweetText,
   HashTag,
   HashContainer,
+  MediaImage
 } from './style';
+import { parse } from '../../../shared/utils/parseText';
+import { customHistory } from '../../../App/Routes';
 
-const RULE = /((?:#|@)\w+|http\S+)/
+const PATTERN = /^((http|https):\/\/)/;
 
-interface IHashTag {
+export interface IHashTag {
   text: string;
 }
 
@@ -38,30 +40,32 @@ interface ITweet {
       id: number;
     };
   };
+  extended_entities?: {
+    media?: {
+      media_url: string
+      media_url_https: string
+      url: string
+      display_url: string
+      expanded_url: string
+      type: 'photo' | 'video'
+    }[]
+  }
 }
 
 export default ({ tweet }: { tweet: ITweet }) => {
-  console.log('tweet', tweet);
-  const history = useHistory();
+  const handleHashTagClick = (link: string, e: any) => {
+    e.preventDefault();
+    if(PATTERN.test(link)) {
+      window.open(link, "_blank")
+      return
+    }
 
-  const handleHashTagClick = (link: string) => {
     link = link.replace(/[#|@]/g, "")
-    console.log(link)
-    history.push(`/user/${link}`);
-  };
-
-  const parse = (value: string) => {
-    return value.split(RULE).map(chunk => {
-      return chunk.match(RULE) ? (
-        <HashTag onClick={() => handleHashTagClick(chunk)}>{chunk}</HashTag>
-      ) : (
-        chunk
-      );
-    });
+    customHistory.push(`/user/${link}`);
   };
 
   return (
-    <Container key={tweet.id}>
+    <Container key={tweet.id} to={`/tweet/${tweet.id}`}>
       <div>
         <ProfileIcon src={tweet.user.profile_image_url_https} />
       </div>
@@ -74,12 +78,15 @@ export default ({ tweet }: { tweet: ITweet }) => {
           {tweet.entities.hashtags?.map?.(
             (hashtag: IHashTag, index: number) => (
               <HashTag
-                onClick={() => handleHashTagClick(hashtag?.text)}
+                onClick={(e) => handleHashTagClick(hashtag?.text, e)}
                 key={index}>{`#${hashtag?.text}`}</HashTag>
             ),
           )}
         </HashContainer>
-        <TweetText>{parse(tweet.text)}</TweetText>
+        <TweetText>{parse(tweet.text, handleHashTagClick)}</TweetText>
+        {tweet.extended_entities?.media && <div>
+          <MediaImage src={tweet.extended_entities?.media?.[0].media_url_https} />
+        </div>}
       </TweetWrapper>
     </Container>
   );

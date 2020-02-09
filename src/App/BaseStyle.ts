@@ -94,14 +94,14 @@ export default createGlobalStyle`
 `;
 
 export const Container = styled.main`
-  margin: 0 16em;
+  margin: 0 12em;
+  ${media.BigDesktop`
+    margin: 0 9em;
+  `};
   ${media.Desktop`
-    margin: 0 8em;
+    margin: 0 6em;
   `};
   ${media.Tablet`
-  margin: 0 3em;
-  `};
-  ${media.Phablet`
-    margin: 0;
+  margin: 0;
   `};
 `

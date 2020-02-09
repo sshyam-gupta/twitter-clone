@@ -1,12 +1,17 @@
 import styled from 'styled-components';
-import { color, font, mixin } from '../../../shared/utils/styles';
+import { color, font, mixin, media } from '../../../shared/utils/styles';
+import { Link } from 'react-router-dom';
 
-export const Container = styled.section`
+export const Container = styled(Link)`
   padding: 1rem;
   display: flex;
   flex-direction: row;
   border: 1px solid ${color.borderLight};
   border-top: 0;
+
+  &:hover {
+    background: ${color.backgroundLight};
+  }
 `
 
 export const ProfileIcon = styled.img`
@@ -14,10 +19,28 @@ export const ProfileIcon = styled.img`
   width: 70px;
   border-radius: 35px;
   margin: 0 5px;
+
+  ${media.Tablet`
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+  `};
+  ${media.Phablet`
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+  `};
+`
+
+export const MediaImage = styled.img`
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 15px;
+  opacity: 0.8;
+  object-fit: cover;
 `
 
 export const TweetWrapper = styled.div`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   margin: 0 5px;
@@ -47,6 +70,8 @@ export const HashTag = styled.span`
 
 export const HashContainer =styled.div`
   margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
 
   span {
     margin-right: 5px;

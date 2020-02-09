@@ -5,16 +5,22 @@ import { createBrowserHistory } from 'history';
 import PageError from '../shared/components/PageError';
 import UserPage from '../screens/UserPage';
 import { Container } from './BaseStyle';
+import TweetPage from '../screens/TweetPage';
 
-const customHistory = createBrowserHistory();
+export const customHistory = createBrowserHistory();
 
 
 const Routes = () => (
   <Container>
     <Router history={customHistory}>
       <Switch>
-        <Redirect exact from="/" to="/user:userId" />
+        <Route exact path="/" component={PageError} />
+        <Route exact path="/user" component={PageError} />
         <Route exact path="/user/:userId" component={UserPage} />
+
+        <Redirect exact from="/tweet" to="/tweet/1226557433926963200" />
+        <Route exact path="/tweet/:tweetId" component={TweetPage} />
+
         <Route component={PageError} />
       </Switch>
     </Router>
