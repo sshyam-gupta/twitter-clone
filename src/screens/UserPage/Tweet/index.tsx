@@ -24,6 +24,7 @@ export interface IHashTag {
 
 interface ITweet {
   id: number;
+  id_str: string;
   created_at: string;
   text: string;
   truncated: boolean;
@@ -65,7 +66,7 @@ export default ({ tweet }: { tweet: ITweet }) => {
   };
 
   return (
-    <Container key={tweet.id} to={`/tweet/${tweet.id}`}>
+    <Container key={tweet.id_str} to={`/tweet/${tweet.id_str}`}>
       <div>
         <ProfileIcon src={tweet.user.profile_image_url_https} />
       </div>

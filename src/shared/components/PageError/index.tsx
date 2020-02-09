@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ErrorPage, ErrorPageInner, ErrorBox, Title } from './styles';
+import { Link } from 'react-router-dom';
 
 const PageError = () => (
   <ErrorPage>
@@ -9,7 +10,7 @@ const PageError = () => (
         <Title>Sorry, that page doesn’t exist!</Title>
         <p>
           {'Why not try a '}
-          <a href="/">search</a>
+          <Link to="/user/timesofindia">Times of India</Link>
           {'  to find something else?'}
         </p>
       </ErrorBox>

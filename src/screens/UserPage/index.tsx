@@ -8,12 +8,12 @@ import { wrapException } from '../../shared/utils/hooks/useApi';
 const UserPage = () => {
   const { userId } = useParams();
   const [data, setData] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
       setIsLoading(true);
-      ApiService.getUserTimeline()
-      .then((response) => {
+      ApiService.getUserTimeline(userId)
+      .then((response: any) => {
         setData(response)
         setIsLoading(false);
       })
