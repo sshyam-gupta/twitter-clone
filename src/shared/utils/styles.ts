@@ -7,6 +7,7 @@ export const color = {
   warning: '#F89C1C', // orange
   secondary: '#8899a6', // light grey
 
+  textPrimary: '#fff',
   textDarkest: '#172b4d',
   textDark: '#42526E',
   textMedium: '#5E6C84',
@@ -21,9 +22,21 @@ export const color = {
   backgroundLightSuccess: '#E4FCEF',
 
   borderLightest: '#dfe1e6',
-  borderLight: '#C1C7D0',
+  borderLight: '#c1c7d040',
   borderInputFocus: '#4c9aff',
 };
+
+const SIZES: any = {
+  Giant: 1440,
+  BigDesktop: 1200,
+  Desktop: 1000,
+  Tablet: 768,
+  Thone: 600,
+  Phablet: 480,
+  Phone: 376,
+  Tiny: 330,
+};
+
 
 export const font = {
   regular: 'font-family: "AirbnbCerealBook"; font-weight: normal;',
@@ -103,3 +116,14 @@ export const mixin = {
     }
   `
 }
+
+export const media = Object.keys(SIZES).reduce((accumulator: any, label: string) => {
+  // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
+  const emSize = SIZES[label] / 16;
+  accumulator[label] = (args: any) => css`
+    @media (max-width: ${emSize}em) {
+      ${css(args)};
+    }
+  `;
+  return accumulator;
+}, {});

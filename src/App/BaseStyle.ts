@@ -1,15 +1,15 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
-import { color, font, mixin } from '../shared/utils/styles';
+import { color, font, mixin, media } from '../shared/utils/styles';
 
 export default createGlobalStyle`
   html, body, #root {
     height: 100%;
     min-height: 100%;
-    min-width: 768px;
+    background-color: ${color.backgroundDarkPrimary};
   }
   body {
-    color: ${color.textDarkest};
+    color: ${color.textPrimary};
     -webkit-tap-highlight-color: transparent;
     line-height: 1.2;
     ${font.size(16)}
@@ -72,7 +72,7 @@ export default createGlobalStyle`
     display: none;
   }
   select option {
-    color: ${color.textDarkest};
+    color: ${color.textPrimary};
   }
   p {
     line-height: 1.4285;
@@ -92,3 +92,16 @@ export default createGlobalStyle`
   }
   ${mixin.placeholderColor(color.textLight)}
 `;
+
+export const Container = styled.main`
+  margin: 0 16em;
+  ${media.Desktop`
+    margin: 0 8em;
+  `};
+  ${media.Tablet`
+  margin: 0 3em;
+  `};
+  ${media.Phablet`
+    margin: 0;
+  `};
+`

@@ -1,20 +1,24 @@
 import React from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import { createBrowserHistory } from 'history';
 import PageError from '../shared/components/PageError';
-import Homepage from '../screens/Homepage';
+import UserPage from '../screens/UserPage';
+import { Container } from './BaseStyle';
 
 const customHistory = createBrowserHistory();
 
 
 const Routes = () => (
-  <Router history={customHistory}>
-    <Switch>
-      <Route exact path="/" component={Homepage} />
-      <Route component={PageError} />
-    </Switch>
-  </Router>
+  <Container>
+    <Router history={customHistory}>
+      <Switch>
+        <Redirect exact from="/" to="/user:userId" />
+        <Route exact path="/user/:userId" component={UserPage} />
+        <Route component={PageError} />
+      </Switch>
+    </Router>
+  </Container>
 );
 
 export default Routes;
